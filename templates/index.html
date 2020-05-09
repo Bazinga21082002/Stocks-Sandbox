@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% block main %}
+    <table style="width:100%" class="w3-table-all" style="font-size:20px">
+      <tr class="w3-light-grey w3-hover-blue">
+        <th>Stocks</th>
+        <th>Number of Shares</th>
+        <th>Current price of each Stock in $</th>
+        <th>Total Value in $</th>
+      </tr>
+        {% for stock_share in stocks_shares %}
+            <tr class="w3-hover-text-blue">
+                <td>
+                    {{ stock_share.symbol }}
+                </td>
+                <td>
+                    {{ stock_share.shares }}
+                </td>
+                <td>
+                    {{ '%0.2f'|format(stock_share.price) }}
+                </td>
+                <td>
+                        {{ '%0.2f'|format(stock_share.sums) }}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="special">Now you have ${{ '%0.2f'|format(cash) }}</p>
+    <p class="special">Grand Total is ${{ '%0.2f'|format(budget) }}</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="special-psswd">Change Password</p>
+
+    <form action="/index" method="post">
+        <div class="form-group" text-align="left">
+            <input class="form-control" name="password_1" placeholder="New Password" type="password"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password_2" placeholder="Confirm New Password" type="password"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Update password</button>
+    </form>
+
+{% endblock %}
